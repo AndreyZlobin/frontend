@@ -1,0 +1,25 @@
+{
+  "name": "@self-kit/icons",
+  "version": "0.31.0",
+  "browser": "./index.ts",
+  "scripts": {
+    "generate-themed-icons": "npx rimraf ./generated-themed-icons && svgr --config-file svgr.themed-config.js themed-assets",
+    "generate-custom-icons": "npx rimraf ./generated-custom-icons && svgr --config-file svgr.custom-config.js custom-assets",
+    "svgr": "npm run generate-themed-icons && npm run generate-custom-icons",
+    "prebuild": "npx rimraf ./lib",
+    "build": "commander build",
+    "publish": "npm publish ./lib",
+    "lint:types": "tsc --noEmit",
+    "lint": "eslint --fix --quiet",
+    "lint:all": "eslint \"**/*.{ts,tsx}\" --fix --quiet"
+  },
+  "peerDependencies": {
+    "@mui/material": "^5.3.1",
+    "react": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.17.10",
+    "@svgr/cli": "^6.2.0"
+  },
+  "dependencies": {}
+}

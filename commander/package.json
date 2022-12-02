@@ -1,0 +1,21 @@
+{
+  "name": "@self-kit/commander",
+  "version": "1.0.0",
+  "private": true,
+  "bin": "./index.js",
+  "scripts": {
+    "lint": "eslint ./ --fix --quiet",
+    "tests": "jest --silent"
+  },
+  "dependencies": {
+    "recursive-copy": "^2.0.10",
+    "yargs": "^17.5.1",
+    "shelljs": "^0.8.4",
+    "@commitlint/lint": "^17.0.3",
+    "@commitlint/load": "^17.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5",
+    "@self-kit/eslint-config-node": "^0.1.0"
+  }
+}

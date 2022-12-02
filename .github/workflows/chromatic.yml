@@ -1,0 +1,42 @@
+name: 'Chromatic'
+
+on:
+   push:
+     branches: [main]
+     paths:
+       - packages/ui/**
+       - packages/icons/**
+       - packages/fonts/**
+       - .storybook/**
+       - package.json
+       - package-lock.json
+   pull_request:
+     branches: [main]
+     paths:
+       - packages/ui/**
+       - packages/icons/**
+       - packages/fonts/**
+       - .storybook/**
+       - package.json
+       - package-lock.json
+
+jobs:
+  chromatic-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Publish to Chromatic
+        env:
+          NODE_OPTIONS: --max-old-space-size=4072
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.TOKEN }}
+          projectToken: 4692158faeb9
+          exitZeroOnChanges: true

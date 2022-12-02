@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "./*.js",
+    "./*.ts",
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.stories.tsx"
+  ],
+  "exclude": ["node_modules", "lib", "generated-custom-icons", "generated-themed-icons"]
+}

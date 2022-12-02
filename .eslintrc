@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "extends": ["@self-kit/eslint-config-react-ts", "plugin:testing-library/react"],
+  "env": {
+    "node": true
+  },
+  "ignorePatterns": ["lib", "build", "node_modules"],
+  "plugins": ["testing-library"],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": true, "packageDir": ["./", "./"] }
+    ]
+  }
+}
