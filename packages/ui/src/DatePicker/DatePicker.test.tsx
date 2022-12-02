@@ -1,4 +1,4 @@
-import { act, fireEvent, renderWithTheme, screen } from '@sef-kit/tests';
+import { act, fireEvent, renderWithTheme, screen } from '@self-kit/tests';
 import { vi } from 'vitest';
 import { useState } from 'react';
 
