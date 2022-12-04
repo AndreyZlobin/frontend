@@ -1,5 +1,7 @@
 export * from 'react-hook-form';
 
+export * from './Form';
+
 export * from './FormMaskField';
 
 export * from './FormMobilePhoneField';
