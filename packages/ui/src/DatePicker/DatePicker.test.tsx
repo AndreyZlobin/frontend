@@ -1,4 +1,10 @@
-import { act, fireEvent, renderWithTheme, screen } from '@self-kit/tests';
+import {
+  act,
+  fireEvent,
+  renderWithTheme,
+  screen,
+  userEvents,
+} from '@self-kit/tests';
 import { vi } from 'vitest';
 import { useState } from 'react';
 
@@ -6,12 +12,12 @@ import { DatePicker } from './DatePicker';
 
 // Протестировать любые кейсы, связанные с MaskFiled невозможно из-за того, что MaskField использует методы, не эмулируемые в rtl
 describe('DatePicker', () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
+  beforeAll(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(new Date('2022-02-10'));
   });
 
-  afterEach(() => {
+  afterAll(() => {
     vi.useRealTimers();
   });
 
@@ -20,7 +26,10 @@ describe('DatePicker', () => {
 
     renderWithTheme(<DatePicker onChange={onChange} />);
     fireEvent.focus(screen.getByRole('textbox'));
-    await act(() => screen.getAllByText('10')[0].click());
+
+    const dateBtn = screen.getAllByText('10')[0];
+
+    await userEvents.click(dateBtn);
     expect(onChange.mock.calls[0][0] instanceof Date).toBeTruthy();
 
     expect(onChange.mock.calls[0][0].toISOString()).toBe(
@@ -93,5 +102,24 @@ describe('DatePicker', () => {
     const selected = screen.getAllByText('9')[0].getAttribute('aria-selected');
 
     expect(selected).toBeTruthy();
+  });
+
+  it('Props:onBlur: вызывается при закрытии popover', async () => {
+    const onBlur = vi.fn();
+
+    renderWithTheme(<DatePicker onBlur={onBlur} />);
+    fireEvent.focus(screen.getByRole('textbox'));
+    // клик вне инпута с поповером
+    await userEvents.click(document.body);
+    expect(onBlur).toBeCalled();
+  });
+
+  it('Props:onBlur: не вызывается при потере фокуса на инпуте', async () => {
+    const onBlur = vi.fn();
+
+    renderWithTheme(<DatePicker onBlur={onBlur} />);
+    fireEvent.focus(screen.getByRole('textbox'));
+    await userEvents.tab();
+    expect(onBlur).not.toBeCalled();
   });
 });
