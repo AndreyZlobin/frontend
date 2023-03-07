@@ -42,8 +42,7 @@ jobs:
           npm run build --workspace=@self-kit/components &
           npm run build --workspace=@self-kit/icons &
           npm run build --workspace=@self-kit/validations &
-          npm run build --workspace=@self-kit/form &
-          npm run build --workspace=@self-kit/features
+          npm run build --workspace=@self-kit/form
         env:
           RELEASE_TAG: ${{ env.NEXT_VERSION }}
 
@@ -51,13 +50,13 @@ jobs:
       - name: Publish packages
 #        if: env.CURRENT_VERSION != env.NEXT_VERSION
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
-          npm publish ./packages/ui/lib --access public
-          npm publish ./packages/icons/lib --access public
-          npm publish ./packages/fonts/lib --access public
-          npm publish ./packages/illustrations/lib --access public
-          npm publish ./packages/validations/lib --access public
-          npm publish ./packages/form/lib --access public
+          npm publish ./packages/ui/lib &
+          npm publish ./packages/components/lib &
+          npm publish ./packages/icons/lib &
+          npm publish ./packages/validations/lib &
+          npm publish ./packages/form/lib
+        env:
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
 #      # Build всех пакетов
 #      - name: Build @self-kit/ui
