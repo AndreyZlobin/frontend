@@ -40,18 +40,22 @@ jobs:
         env:
           RELEASE_TAG: ${{ env.NEXT_VERSION }}
 
+      - name: Second
+        if: env.CURRENT_VERSION != env.NEXT_VERSION
+        run: |
+          echo "Start"
+
       # Паблишинг всех пакетов
       - name: Publish packages
         if: env.CURRENT_VERSION != env.NEXT_VERSION
         run: |
-          npm publish ./packages/ui/lib &
-          npm publish ./packages/components/lib &
-          npm publish ./packages/icons/lib &
-          npm publish ./packages/validations/lib &
-          npm publish ./packages/form/lib &
-          npm publish ./packages/features/lib
-        env:
-          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
+          npm publish ./packages/ui/lib --access public
+          npm publish ./packages/icons/lib --access public
+          npm publish ./packages/fonts/lib --access public
+          npm publish ./packages/illustrations/lib --access public
+          npm publish ./packages/validations/lib --access public
+          npm publish ./packages/form/lib --access public
 
 #      # Build всех пакетов
 #      - name: Build @self-kit/ui
