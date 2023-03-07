@@ -28,7 +28,7 @@ jobs:
 
       - name: Second
         run: |
-          echo "${{ secrets.NPM_AUTH_TOKEN }}-${{env.NEXT_VERSION}}"
+          echo "${{ secrets.CURRENT_VERSION }}-${{env.NEXT_VERSION}}"
 
       # Build всех пакетов
       - name: Build packages
