@@ -7,11 +7,11 @@
   ],
   "devDependencies": {
     "@self-kit/commander": "*",
-    "@self-kit/commitlint-config": "^0.1.0",
-    "@self-kit/prettier-config": "^0.1.0",
-    "@self-kit/eslint-config-react-ts": "^0.1.0",
-    "@self-kit/stylelint-config-styled": "^0.1.0",
+    "@self-kit/commitlint-config": "^0.1.1",
+    "@self-kit/prettier-config": "^0.1.1",
+    "@self-kit/eslint-config-react-ts": "^0.1.1",
     "@self-kit/illustrations": "*",
+    "@self-kit/stylelint-config-styled": "^0.1.1",
     "@storybook/addon-actions": "6.5.13",
     "@storybook/addon-docs": "6.5.13",
     "@storybook/preset-create-react-app": "4.1.2",
@@ -51,7 +51,8 @@
     "copyfiles": "^2.4.1",
     "jsdom": "^20.0.3",
     "resize-observer-polyfill": "^1.5.1",
-    "eslint-plugin-testing-library": "^5.9.1"
+    "eslint-plugin-testing-library": "^5.9.1",
+    "cross-env": "^7.0.3"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
@@ -60,8 +61,11 @@
     "lint": "npm run lint:all --workspaces --if-present",
     "lint:types": "npm run lint:types --workspaces --if-present",
     "lint:styles": "npm run lint:styles:all --workspaces --if-present",
-    "publish": "npm run build --workspaces --if-present && npm run publish --workspaces --if-present",
     "tests": "npm run tests --workspaces --if-present",
     "tests:ci": "npm run tests:ci --workspaces --if-present"
+  },
+  "volta": {
+    "node": "18.13.0",
+    "yarn": "1.19.2"
   }
 }

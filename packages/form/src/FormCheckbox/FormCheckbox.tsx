@@ -4,16 +4,10 @@ import {
   FormControl,
   FormControlLabel,
   FormHelperText,
-} from '@self-kit/ui';
-import { useController } from 'react-hook-form';
+} from '@self-kit/components';
 
-import { useFieldErrorProps } from '../hooks';
+import { useFormFieldProps } from '../hooks';
 import { WithFormFieldProps } from '../types';
-
-/**
- * @description Тип значения, которое сетится в state формы
- */
-export type FormCheckboxValue = boolean;
 
 export type FormCheckboxProps<FieldValues extends object> = WithFormFieldProps<
   CheckboxProps,
@@ -25,22 +19,22 @@ export type FormCheckboxProps<FieldValues extends object> = WithFormFieldProps<
 /**
  * @description Адаптер для Checkbox
  */
-export function FormCheckbox<FieldValues extends object>({
+export const FormCheckbox = <FieldValues extends object>({
   success,
-  ...props
-}: FormCheckboxProps<FieldValues>) {
-  const { field, fieldState } = useController(props);
-  const errorProps = useFieldErrorProps(fieldState);
+  ...restProps
+}: FormCheckboxProps<FieldValues>) => {
+  const { title, error, helperText, value, ...restFieldProps } =
+    useFormFieldProps<FormCheckboxProps<FieldValues>, FieldValues>(restProps);
 
   return (
     <FormControl>
       <FormControlLabel
-        control={<Checkbox {...field} {...props} />}
-        label={props.title}
+        control={<Checkbox checked={!!value} {...restFieldProps} />}
+        label={title}
       />
-      <FormHelperText error={errorProps.error} success={success}>
-        {errorProps.helperText}
+      <FormHelperText error={error} success={success}>
+        {helperText}
       </FormHelperText>
     </FormControl>
   );
-}
+};

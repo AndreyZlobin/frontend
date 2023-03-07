@@ -1,10 +1,11 @@
 import { Story } from '@storybook/react';
 
 import { FormStoryContainer } from '../docs';
-import { SubmitButton } from '../SubmitButton';
+import { FormSubmitButton } from '../FormSubmitButton';
 import { useForm } from '../hooks';
 
-import { FormMaskField, FormMaskFieldValue } from './FormMaskField';
+import { FormMaskField } from './FormMaskField';
+import { FormMaskFieldValue } from './types';
 
 export default {
   title: 'Form/FormMaskField',
@@ -26,7 +27,7 @@ const Template: Story = () => {
         rules={{ required: 'Обязательное поле' }}
         mask="aa.000"
       />
-      <SubmitButton>Submit</SubmitButton>
+      <FormSubmitButton>Submit</FormSubmitButton>
     </FormStoryContainer>
   );
 };

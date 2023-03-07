@@ -1,10 +1,11 @@
 import { Story } from '@storybook/react';
 
 import { FormStoryContainer } from '../docs';
-import { SubmitButton } from '../SubmitButton';
+import { FormSubmitButton } from '../FormSubmitButton';
 import { useForm } from '../hooks';
 
-import { FormTextArea, FormTextAreaValue } from './FormTextArea';
+import { FormTextArea } from './FormTextArea';
+import { FormTextAreaValue } from './types';
 
 export default {
   title: 'Form/FormTextarea',
@@ -25,7 +26,7 @@ const Template: Story = () => {
         name="textareaField"
         rules={{ required: 'Обязательное поле' }}
       />
-      <SubmitButton>Submit</SubmitButton>
+      <FormSubmitButton>Submit</FormSubmitButton>
     </FormStoryContainer>
   );
 };

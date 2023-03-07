@@ -1,7 +1,7 @@
 import { createRule } from '../createRule';
-import { isEmptyString } from '../utils';
+import { isEmptyString, isStringOfZeros } from '../utils';
 
-export const IS_INNIP_DEFAULT_MESSAGE = 'Некорректный ИНН ЮЛ';
+export const IS_INNIP_DEFAULT_MESSAGE = 'Некорректный ИНН ИП';
 
 const INNIP_LENGTH = 12;
 
@@ -39,6 +39,10 @@ export const isINNIP = createRule<{ message?: string }, false>(
     (value) => {
       if (isEmptyString(value)) {
         return undefined;
+      }
+
+      if (isStringOfZeros(value)) {
+        return message;
       }
 
       if (typeof value === 'string') {

@@ -1,4 +1,4 @@
-import { Grid } from '@self-kit/ui';
+import { Grid } from '@self-kit/components';
 
 import { Form, FormProps } from '../../Form';
 

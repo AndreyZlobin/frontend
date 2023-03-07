@@ -1,9 +1,8 @@
-import { Autocomplete, AutocompleteProps } from '@self-kit/ui';
-import { useController } from 'react-hook-form';
+import { Autocomplete, AutocompleteProps } from '@self-kit/components';
 import { SyntheticEvent } from 'react';
 
 import { WithFormFieldProps } from '../types';
-import { useFieldErrorProps } from '../hooks';
+import { useFormFieldProps } from '../hooks';
 
 export type FormAutocompleteProps<
   FieldValues extends object,
@@ -34,21 +33,21 @@ export const FormAutocomplete = <
     FreeSolo
   >,
 ) => {
-  const { field, fieldState } = useController(props);
-
-  const errorProps = useFieldErrorProps(fieldState);
+  const fieldProps = useFormFieldProps<
+    FormAutocompleteProps<
+      FieldValues,
+      Option,
+      Multiple,
+      DisableClearable,
+      FreeSolo
+    >,
+    FieldValues
+  >(props);
 
   const handleOnChange = <Value,>(
     _event: SyntheticEvent<Element, Event>,
     value: Value,
-  ) => field.onChange(value);
+  ) => fieldProps.onChange(value);
 
-  return (
-    <Autocomplete
-      {...field}
-      {...props}
-      {...errorProps}
-      onChange={handleOnChange}
-    />
-  );
+  return <Autocomplete {...fieldProps} onChange={handleOnChange} />;
 };

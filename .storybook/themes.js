@@ -1,12 +1,12 @@
-import { createTheme, Brand } from '../packages/ui/src'
-import UbuntuBoldWoff from '@self-kit/fonts/src/UbuntuBold.woff';
-import UbuntuBoldWoff2 from '@self-kit/fonts/src/UbuntuBold.woff2';
-import UbuntuLightWoff from '@self-kit/fonts/src/UbuntuLight.woff';
-import UbuntuLightWoff2 from '@self-kit/fonts/src/UbuntuLight.woff2';
-import UbuntuRegularWoff from '@self-kit/fonts/src/UbuntuRegular.woff';
-import UbuntuRegularWoff2 from '@self-kit/fonts/src/UbuntuRegular.woff2';
-import UbuntuMediumWoff from '@self-kit/fonts/src/UbuntuMedium.woff';
-import UbuntuMediumWoff2 from '@self-kit/fonts/src/UbuntuMedium.woff2';
+import { createTheme, Brand } from '../packages/components/src'
+import UbuntuBoldWoff from '@self-kit/ui/fonts/UbuntuBold.woff';
+import UbuntuBoldWoff2 from '@self-kit/ui/fonts/UbuntuBold.woff2';
+import UbuntuLightWoff from '@self-kit/ui/fonts/UbuntuLight.woff';
+import UbuntuLightWoff2 from '@self-kit/ui/fonts/UbuntuLight.woff2';
+import UbuntuRegularWoff from '@self-kit/ui/fonts/UbuntuRegular.woff';
+import UbuntuRegularWoff2 from '@self-kit/ui/fonts/UbuntuRegular.woff2';
+import UbuntuMediumWoff from '@self-kit/ui/fonts/UbuntuMedium.woff';
+import UbuntuMediumWoff2 from '@self-kit/ui/fonts/UbuntuMedium.woff2';
 
 const fontsUrls = {
   bold: {

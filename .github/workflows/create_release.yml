@@ -15,7 +15,6 @@ jobs:
           node-version: 18.x
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: npm i
@@ -27,76 +26,103 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       # Build всех пакетов
-      - name: Build @self-kit/ui
+      - name: Build packages
         if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm run build --workspace=@self-kit/ui
-        env:
-          # NEXT_VERSION устанавливается в semantic-release.config.js
-          RELEASE_TAG: ${{ env.NEXT_VERSION }}
-
-      - name: Build @self-kit/icons
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm run build --workspace=@self-kit/icons
-        env:
-          RELEASE_TAG: ${{ env.NEXT_VERSION }}
-
-      - name: Build @self-kit/fonts
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm run build --workspace=@self-kit/fonts
-        env:
-          RELEASE_TAG: ${{ env.NEXT_VERSION }}
-
-      - name: Build @self-kit/illustrations
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm run build --workspace=@self-kit/illustrations
-        env:
-          RELEASE_TAG: ${{ env.NEXT_VERSION }}
-
-      - name: Build @self-kit/validations
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm run build --workspace=@self-kit/validations
-        env:
-          RELEASE_TAG: ${{ env.NEXT_VERSION }}
-
-      - name: Build @self-kit/form
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm run build --workspace=@self-kit/form
+        # PACKAGE_VERSION устанавливается в semantic-release.config.js
+        run: |
+          npm run build --workspace=@self-kit/ui &
+          npm run build --workspace=@self-kit/components &
+          npm run build --workspace=@self-kit/icons &
+          npm run build --workspace=@self-kit/validations &
+          npm run build --workspace=@self-kit/form &
+          npm run build --workspace=@self-kit/features
         env:
           RELEASE_TAG: ${{ env.NEXT_VERSION }}
 
       # Паблишинг всех пакетов
-      - name: Publish @self-kit/ui
+      - name: Publish packages
         if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm publish ./packages/ui/lib --access public
+        run: |
+          npm publish ./packages/ui/lib &
+          npm publish ./packages/components/lib &
+          npm publish ./packages/icons/lib &
+          npm publish ./packages/validations/lib &
+          npm publish ./packages/form/lib &
+          npm publish ./packages/features/lib
         env:
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name: Publish @self-kit/icons
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm publish ./packages/icons/lib --access public
-        env:
-          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-      - name: Publish @self-kit/fonts
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm publish ./packages/fonts/lib --access public
-        env:
-          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-      - name: Publish @self-kit/illustrations
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm publish ./packages/illustrations/lib --access public
-        env:
-          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-      - name: Publish @self-kit/validations
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm publish ./packages/validations/lib --access public
-        env:
-          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-      - name: Publish @self-kit/form
-        if: env.CURRENT_VERSION != env.NEXT_VERSION
-        run: npm publish ./packages/form/lib --access public
-        env:
-          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+#      # Build всех пакетов
+#      - name: Build @self-kit/ui
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm run build --workspace=@self-kit/ui
+#        env:
+#          # NEXT_VERSION устанавливается в semantic-release.config.js
+#          RELEASE_TAG: ${{ env.NEXT_VERSION }}
+#
+#      - name: Build @self-kit/icons
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm run build --workspace=@self-kit/icons
+#        env:
+#          RELEASE_TAG: ${{ env.NEXT_VERSION }}
+#
+#      - name: Build @self-kit/fonts
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm run build --workspace=@self-kit/fonts
+#        env:
+#          RELEASE_TAG: ${{ env.NEXT_VERSION }}
+#
+#      - name: Build @self-kit/illustrations
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm run build --workspace=@self-kit/illustrations
+#        env:
+#          RELEASE_TAG: ${{ env.NEXT_VERSION }}
+#
+#      - name: Build @self-kit/validations
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm run build --workspace=@self-kit/validations
+#        env:
+#          RELEASE_TAG: ${{ env.NEXT_VERSION }}
+#
+#      - name: Build @self-kit/form
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm run build --workspace=@self-kit/form
+#        env:
+#          RELEASE_TAG: ${{ env.NEXT_VERSION }}
+#
+#      # Паблишинг всех пакетов
+#      - name: Publish @self-kit/ui
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm publish ./packages/ui/lib --access public
+#        env:
+#          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+#
+#      - name: Publish @self-kit/icons
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm publish ./packages/icons/lib --access public
+#        env:
+#          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+#
+#      - name: Publish @self-kit/fonts
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm publish ./packages/fonts/lib --access public
+#        env:
+#          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+#
+#      - name: Publish @self-kit/illustrations
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm publish ./packages/illustrations/lib --access public
+#        env:
+#          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+#
+#      - name: Publish @self-kit/validations
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm publish ./packages/validations/lib --access public
+#        env:
+#          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+#
+#      - name: Publish @self-kit/form
+#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+#        run: npm publish ./packages/form/lib --access public
+#        env:
+#          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}

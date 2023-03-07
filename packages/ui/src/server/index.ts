@@ -1,3 +1,1 @@
-export * from './createStylesCache';
-
-export * from './createStylesServer';
+export * from '@self-kit/components/server';

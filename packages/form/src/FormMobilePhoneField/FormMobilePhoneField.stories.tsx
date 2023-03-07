@@ -1,13 +1,11 @@
 import { Story } from '@storybook/react';
 
 import { FormStoryContainer } from '../docs';
-import { SubmitButton } from '../SubmitButton';
+import { FormSubmitButton } from '../FormSubmitButton';
 import { useForm } from '../hooks';
 
-import {
-  FormMobilePhoneField,
-  FormMobilePhoneFieldValue,
-} from './FormMobilePhoneField';
+import { FormMobilePhoneField } from './FormMobilePhoneField';
+import { FormMobilePhoneFieldValue } from './types';
 
 export default {
   title: 'Form/FormMobilePhoneField',
@@ -28,7 +26,7 @@ const Template: Story = () => {
         name="phoneField"
         rules={{ required: 'Обязательное поле' }}
       />
-      <SubmitButton>Submit</SubmitButton>
+      <FormSubmitButton>Submit</FormSubmitButton>
     </FormStoryContainer>
   );
 };
