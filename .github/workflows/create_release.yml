@@ -32,7 +32,7 @@ jobs:
 
       # Build всех пакетов
       - name: Build packages
-#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+        if: env.CURRENT_VERSION != env.NEXT_VERSION
         # PACKAGE_VERSION устанавливается в semantic-release.config.js
         run: |
           npm run build --workspace=@self-kit/ui &
@@ -46,7 +46,7 @@ jobs:
 
       # Паблишинг всех пакетов
       - name: Publish packages
-#        if: env.CURRENT_VERSION != env.NEXT_VERSION
+        if: env.CURRENT_VERSION != env.NEXT_VERSION
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
           npm publish ./packages/ui/lib --access public

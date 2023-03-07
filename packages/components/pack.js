@@ -1,4 +1,4 @@
-const { buildTs, copy, rmDist } = require('@astral/commander');
+const { buildTs, copy, rmDist } = require('@self-kit/commander');
 
 rmDist();
 
