@@ -7,6 +7,7 @@ module.exports = {
       {
         releaseRules: [
           { type: 'bug', release: 'patch' },
+          // { type: 'bug', release: 'patch' },
           { type: 'build', release: 'patch' },
           { type: 'feat', release: 'minor' },
           { type: 'refactor', release: 'patch' },
