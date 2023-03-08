@@ -135,7 +135,6 @@ describe('DataGrid', () => {
     expect(onRowClick.mock.calls[0][0]).toEqual({ name: 'Vasya' });
   });
 
-  // TODO: https://astraltrack.atlassian.net/browse/UIKIT-309
   // it('Props:emptyCellValue: по дефолту для пустого значения отображается -', async () => {
   //   renderWithTheme(
   //     <DataGrid<{ name?: string }>

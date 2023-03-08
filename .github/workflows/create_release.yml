@@ -46,6 +46,7 @@ jobs:
         env:
           RELEASE_TAG: ${{ env.NEXT_VERSION }}
 
+
       # Паблишинг всех пакетов
       - name: Publish packages
 #        if: env.CURRENT_VERSION != env.NEXT_VERSION

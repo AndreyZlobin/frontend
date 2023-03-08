@@ -9,4 +9,4 @@ export enum NotificationVariantTypes {
 
 export const NOTIFY_POSITIONS = toast.POSITION;
 
-export const NOTIFY_CLASSNAME = 'self-kit-notify';
+export const NOTIFY_CLASSNAME = 'self-notify';

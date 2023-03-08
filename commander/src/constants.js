@@ -2,8 +2,8 @@ const DIST_DIR_NAME = 'lib';
 const TSCONFIG_PATH = './tsconfig.build.json';
 
 const PACKAGES_NAMES = [
-  '@self-kit/components',
   '@self-kit/ui',
+  '@self-kit/components',
   '@self-kit/icons',
   '@self-kit/fonts',
   '@self-kit/illustrations',

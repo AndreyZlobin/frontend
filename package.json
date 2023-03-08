@@ -62,7 +62,8 @@
     "lint:types": "npm run lint:types --workspaces --if-present",
     "lint:styles": "npm run lint:styles:all --workspaces --if-present",
     "tests": "npm run tests --workspaces --if-present",
-    "tests:ci": "npm run tests:ci --workspaces --if-present"
+    "tests:ci": "npm run tests:ci --workspaces --if-present",
+    "b": "npm run build --prefix packages/components"
   },
   "volta": {
     "node": "18.13.0",
