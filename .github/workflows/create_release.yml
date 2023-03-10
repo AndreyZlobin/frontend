@@ -51,11 +51,11 @@ jobs:
       - name: Publish packages
 #        if: env.CURRENT_VERSION != env.NEXT_VERSION
         run: |
-          npm publish ./packages/ui/lib &
-          npm publish ./packages/components/lib &
-          npm publish ./packages/icons/lib &
-          npm publish ./packages/validations/lib &
-          npm publish ./packages/form/lib
+          npm publish ./packages/ui/lib --access public &
+          npm publish ./packages/components/lib --access public &
+          npm publish ./packages/icons/lib --access public &
+          npm publish ./packages/validations/lib --access public &
+          npm publish ./packages/form/lib --access public
         env:
           NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
