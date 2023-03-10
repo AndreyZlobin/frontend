@@ -9,6 +9,7 @@ import { ButtonProps } from './types';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
+    //
     const {
       variant = ButtonVariants.Contained,
       color = ButtonColors.Primary,
